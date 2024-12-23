@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:test_app_dionke/domain/models/currency.dart';
 import 'package:test_app_dionke/domain/repository/currency_repository.dart';
@@ -23,6 +24,7 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     add(CurrencyFetchedEvent());
   }
 
+  //Получение списка валют
   Future<void> _onCurrencyFetched(
     CurrencyFetchedEvent event,
     Emitter<CurrencyState> emit,
@@ -35,10 +37,13 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     } catch (e) {
       emit(CurrencyShowErrorState(
           errorText: 'Empty list', errorBody: e.toString()));
-      print(e.toString());
+      if (kDebugMode) {
+        print(e.toString());
+      }
     }
   }
 
+  //Выбор валюты
   Future<void> _onCurrencySelectCode(
     CurrencySelectCodeEvent event,
     Emitter<CurrencyState> emit,
@@ -54,6 +59,7 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     }
   }
 
+  //Конвертация
   Future<void> _onCurrencyConvert(
     CurrencyConvertEvent event,
     Emitter<CurrencyState> emit,
@@ -84,7 +90,9 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
       } catch (e) {
         emit(CurrencyShowErrorState(
             errorText: 'Error convert', errorBody: e.toString()));
-        print(e.toString());
+        if (kDebugMode) {
+          print(e.toString());
+        }
       }
     }
   }

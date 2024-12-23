@@ -14,7 +14,7 @@ class App extends StatelessWidget {
         includePrefixMatches: true,
       ),
       debugShowCheckedModeBanner: false,
-      title: 'Currency converter'
+      title: 'Currency converter',
     );
   }
 }

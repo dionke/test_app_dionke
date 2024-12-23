@@ -47,11 +47,8 @@ class _CurrencyConverterScreenState extends State<CurrencyConverterScreen> {
           if (state is CurrencyLoadingState) {
             return const KitProgressIndicator();
           } else if (state is CurrencyLoadedState) {
-
-
-              firstAmountController.text = state.firstAmount;
-              secondAmountController.text = state.secondAmount;
-
+            firstAmountController.text = state.firstAmount;
+            secondAmountController.text = state.secondAmount;
 
             return SingleChildScrollView(
               padding: const EdgeInsets.all(16),
@@ -65,8 +62,8 @@ class _CurrencyConverterScreenState extends State<CurrencyConverterScreen> {
                           title: 'You send',
                           controller: firstAmountController,
                           onChanged: (value) {
-                              debouncer(() => _currencyConvert(context,
-                                  isFirstField: true, amount: value));
+                            debouncer(() => _currencyConvert(context,
+                                isFirstField: true, amount: value));
                           },
                         ),
                       ),
@@ -89,9 +86,8 @@ class _CurrencyConverterScreenState extends State<CurrencyConverterScreen> {
                           title: 'They get',
                           controller: secondAmountController,
                           onChanged: (value) {
-                              debouncer(() => _currencyConvert(context,
-                                  isFirstField: false, amount: value));
-
+                            debouncer(() => _currencyConvert(context,
+                                isFirstField: false, amount: value));
                           },
                         ),
                       ),
